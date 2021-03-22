@@ -1,4 +1,6 @@
-package br.edu.ifpb.application;
+package br.edu.ifpb.domain.venda;
+
+import java.util.Random;
 
 /**
  * @author Ricardo Job
@@ -8,12 +10,30 @@ package br.edu.ifpb.application;
 public class Item {
 
     private String produto;
-    private double valor = 10.7;
+    private double valor = new Random().nextDouble() * 10;
+    private int quantidade = 1;
 
     public Item(String produto) {
         this.produto = produto;
     }
+
+    public void incrementar() {
+        this.quantidade++;
+    }
     
+    public void decrementar() {
+        this.quantidade--;
+    }
+
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
     public String getProduto() {
         return produto;
     }
@@ -29,5 +49,5 @@ public class Item {
     public void setValor(double valor) {
         this.valor = valor;
     }
-    
+
 }

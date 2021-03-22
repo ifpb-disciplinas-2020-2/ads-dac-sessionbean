@@ -1,5 +1,7 @@
 package br.edu.ifpb.application;
 
+import br.edu.ifpb.domain.venda.Item;
+import br.edu.ifpb.domain.venda.Venda;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,24 +15,40 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class CarrinhoDeCompras {
-    private List<String> produtos = new ArrayList<>();
-    public void adicionar(String produto){
-        this.produtos.add(produto);
+
+//    private List<Item> produtos = new ArrayList<>();
+    private String cliente;
+    
+    // TODO: toda a lógica para a classe Venda
+    private Venda venda = new Venda();
+
+    public void adicionar(String produto) {
+        this.venda.adicionar(produto);
+//        Item item = new Item(produto);
+//        this.produtos.add(item);
     }
-    public void remover(String produto){
-        this.produtos.remove(produto);
-            
+
+    public void incrementar(String produto) {
+        this.venda.incrementar(produto);
     }
-    public List<String> itens(){
-        return Collections.unmodifiableList(
-            produtos
-        );
+
+    public void decrementar(String produto) {
+        this.venda.decrementar(produto);
     }
+
+//    }
+    public void remover(String produto) {
+        this.venda.remover(produto);
+    }
+
+    public List<Item> itens() {
+        return this.venda.itens();
+    }
+
     @Remove
-    public void finalizar(){
-        System.out.println("--- Carrinho de compras ---");
-        this.produtos.forEach(System.out::println);
-//        this.produtos = new ArrayList<>();
-        System.out.println("--- Carrinho finalizado ---");
+    public void finalizar(String cliente) {
+        this.venda.finalizar(cliente);
+        // TODO: processar pagamento
+        // TODO: enviar confirmação do pedido
     }
 }

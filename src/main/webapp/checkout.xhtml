@@ -1,25 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <h:form>
             <h:outputText value="Carrinho de Compras"/>
-            <h:dataTable var="produto" value="#{controladorDeCarrinho.todosOsProdutos()}">
-                <h:column> #{produto} </h:column>
+            <h:dataTable var="item" value="#{controladorDeCarrinho.todosOsProdutos()}">
+                <h:column> #{item.produto} </h:column>
+                <h:column> R$
+                    <h:outputText value="#{item.valor} ">
+                        <f:convertNumber pattern="#,##0.00" minFractionDigits="2" />
+                    </h:outputText>
+                </h:column>
                 <h:column> 
-                    <h:commandButton value="-" action="#{controladorDeCarrinho.remover(produto)}" />
+                    <h:commandButton value="-" action="#{controladorDeCarrinho.decrementar(item.produto)}" />
+                </h:column>
+                <h:column> #{item.quantidade} </h:column>
+                <h:column> 
+                    <h:commandButton value="+" action="#{controladorDeCarrinho.incrementar(item.produto)}" />
                 </h:column>
             </h:dataTable>
             <h:outputLabel value="Cliente" for="cliente"/>
             <h:inputText id="cliente" value="#{controladorDeCarrinho.cliente}" />
             <h:commandButton value="checkout" action="#{controladorDeCarrinho.checkout()}"/>
         </h:form>
-        
-        
+
+
     </h:body>
 </html>
 
