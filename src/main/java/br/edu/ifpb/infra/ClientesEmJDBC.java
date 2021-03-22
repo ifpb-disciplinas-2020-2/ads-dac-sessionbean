@@ -2,7 +2,6 @@ package br.edu.ifpb.infra;
 
 import br.edu.ifpb.domain.Clientes;
 import br.edu.ifpb.domain.Cliente;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
