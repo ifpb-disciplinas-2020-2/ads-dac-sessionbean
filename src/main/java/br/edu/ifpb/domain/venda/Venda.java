@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Venda {
 
-    private List<Item> produtos = new ArrayList<>();
+    private final List<Item> produtos = new ArrayList<>();
     private String cliente;
 
     public void adicionar(String produto) {

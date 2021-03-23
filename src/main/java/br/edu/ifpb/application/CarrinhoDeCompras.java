@@ -2,8 +2,6 @@ package br.edu.ifpb.application;
 
 import br.edu.ifpb.domain.venda.Item;
 import br.edu.ifpb.domain.venda.Venda;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
@@ -16,16 +14,12 @@ import javax.ejb.Stateful;
 @Stateful
 public class CarrinhoDeCompras {
 
-//    private List<Item> produtos = new ArrayList<>();
     private String cliente;
     
-    // TODO: toda a lógica para a classe Venda
-    private Venda venda = new Venda();
+    private final Venda venda = new Venda();
 
     public void adicionar(String produto) {
         this.venda.adicionar(produto);
-//        Item item = new Item(produto);
-//        this.produtos.add(item);
     }
 
     public void incrementar(String produto) {
@@ -36,7 +30,6 @@ public class CarrinhoDeCompras {
         this.venda.decrementar(produto);
     }
 
-//    }
     public void remover(String produto) {
         this.venda.remover(produto);
     }
